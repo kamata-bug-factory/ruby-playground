@@ -64,7 +64,7 @@ ruby -v
 
 ### 1.2 Ruby 向けの言語サーバーをインストールする
 
-vscode に Ruby LSP 拡張機能をインストールします。
+VS Code に **Ruby LSP** 拡張機能をインストールします。
 
 > The Ruby LSP is an implementation of the language server protocol for Ruby, used to improve rich features in editors.
 
@@ -85,3 +85,77 @@ https://shopify.github.io/ruby-lsp/
 これを読みました 👇
 
 https://www.ruby-lang.org/ja/documentation/quickstart/
+
+## 3. Ruby の Linter/Formatter を導入する
+
+Ruby 開発において最も標準的に使われている Linter/Formatter は **RuboCop** のようです。
+
+> RuboCop is a Ruby static code analyzer (a.k.a. linter) and code formatter.
+
+https://github.com/rubocop/rubocop
+
+### 3.1 Rubocop をインストールする
+
+Ruby プロジェクトでは、依存関係を管理するために Bundler を使います。
+Bundler を初期化し、`Gemfile` を生成します。
+
+```bash
+bundle init
+```
+
+生成された `Gemfile` の開発・テストグループに `rubocop` を追記します。
+アプリの実行時に読み込む必要がないため、`require: false` を指定します。
+
+```ruby:Gemfile
+group :development, :test do
+  gem 'rubocop', require: false
+end
+```
+
+次のコマンドで依存関係をインストールします。
+
+```bash
+bundle install
+```
+
+Rubocop のルールは　`.rubocop.yml` に記載します。
+
+```yaml:.rubocop.yml
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "vendor/**/*"
+    - "bin/*"
+```
+
+### 3.2 VS Code と Ruby LSP を連携する
+
+Ruby LSP では、Linter/Formatter として Rubocop を使用できます。
+次のように設定を追加します。
+
+```diff_json:.vscode/settings.json
+{
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "mise"
+  },
++ "rubyLsp.formatter": "rubocop",
++ "[ruby]": {
++   "editor.defaultFormatter": "Shopify.ruby-lsp",
++   "editor.formatOnSave": true
++ }
+}
+```
+
+### 3.3 動作確認
+
+Rubocop が正常に導入されると、[20分ではじめるRuby](https://www.ruby-lang.org/ja/documentation/quickstart/) で作成した `ri20min.rb` に警告が出ます。
+3.2 の設定により、Ctrl+S で Formatter が効き、フォーマットに関する警告が消えるはずです。
+
+ターミナルからは次のコマンドで実行できます。
+
+```bash
+# チェックの実行
+bundle exec rubocop
+# 自動修正の実行
+bundle exec rubocop -A
+```
