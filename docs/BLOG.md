@@ -22,7 +22,7 @@ mise use ruby@3.3
 
 私の環境でビルドに失敗し、インストールが中断されました。
 
-```
+```text
 *** Following extensions are not compiled:
 psych:
         Could not be configured. It will not be installed.
@@ -32,7 +32,7 @@ BUILD FAILED (macOS 15.7.4 on arm64 using ruby-build 20260422)
 
 ログファイル (`mkmf.log`) を確認したところ、`yaml.h` が見つからないことが原因だとわかりました。
 
-```
+```text
 conftest.c:3:10: fatal error: 'yaml.h' file not found
     3 | #include <yaml.h>
       |          ^~~~~~~~
@@ -79,3 +79,9 @@ https://shopify.github.io/ruby-lsp/
   }
 }
 ```
+
+## 2. Ruby の文法を学ぶ
+
+これを読みました 👇
+
+https://www.ruby-lang.org/ja/documentation/quickstart/
