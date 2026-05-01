@@ -89,6 +89,12 @@ https://shopify.github.io/ruby-lsp/
 
 https://www.ruby-lang.org/ja/documentation/quickstart/
 
+作成したソースコードは次のコマンドで実行できます。
+
+```bash
+ruby ri20min.rb
+```
+
 ## 3. Ruby の Linter/Formatter を導入する
 
 Ruby 開発において最も標準的に使われている Linter/Formatter は **RuboCop** のようです。
