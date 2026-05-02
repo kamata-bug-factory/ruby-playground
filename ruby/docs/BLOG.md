@@ -5,6 +5,10 @@
 今回転職することになりました。
 次の職場では Ruby 使いが多いそうなので、見習い Rubyist になっておきます。
 
+このリポジトリを使ってお勉強しています 👇
+
+https://github.com/kamata-bug-factory/ruby-playground
+
 ## 前提
 
 私の環境は、以下の通りです。
@@ -103,7 +107,7 @@ Ruby 開発において最も標準的に使われている Linter/Formatter は
 
 https://github.com/rubocop/rubocop
 
-### 3.1 Rubocop をインストールする
+### 3.1 RuboCop をインストールする
 
 Ruby プロジェクトでは、依存関係を管理するために Bundler を使います。
 Bundler を初期化し、`Gemfile` を生成します。
@@ -127,7 +131,7 @@ end
 bundle install
 ```
 
-Rubocop のルールは　`.rubocop.yml` に記載します。
+RuboCop のルールは `.rubocop.yml` に記載します。
 
 ```yaml:.rubocop.yml
 AllCops:
@@ -137,9 +141,9 @@ AllCops:
     - "bin/*"
 ```
 
-### 3.2 VS Code と Ruby LSP を連携する
+### 3.2 VS Code で RuboCop を使う
 
-Ruby LSP では、Linter/Formatter として Rubocop を使用できます。
+VS Code の Ruby LSP 拡張機能では、Linter/Formatter として RuboCop を使用できます。
 次のように設定を追加します。
 
 ```diff_json:.vscode/settings.json
@@ -157,8 +161,8 @@ Ruby LSP では、Linter/Formatter として Rubocop を使用できます。
 
 ### 3.3 動作確認
 
-Rubocop が正常に導入されると、[20分ではじめるRuby](https://www.ruby-lang.org/ja/documentation/quickstart/) で作成した `ri20min.rb` に警告が出ます。
-3.2 の設定により、Ctrl+S で Formatter が効き、フォーマットに関する警告が消えるはずです。
+RuboCop が正常に導入されると、[20分ではじめるRuby](https://www.ruby-lang.org/ja/documentation/quickstart/) で作成した `ri20min.rb` に警告が出ます。
+3.2 の設定により、Command+S で Formatter が効き、フォーマットに関する警告が消えるはずです。
 
 ターミナルからは次のコマンドで実行できます。
 
